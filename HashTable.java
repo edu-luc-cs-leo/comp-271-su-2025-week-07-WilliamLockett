@@ -37,7 +37,17 @@ public class HashTable<E extends Comparable<E>> {
      * @param content E The content of a new node, to be placed in the array.
      */
     public void add(E content) {
-        // COMPLETE THIS METHOD
+        Node<E> newNode = new Node<>(content); // creates a new node connected to content
+
+        int hash = content.hashCode(); // creates an int to store the hash code
+        int index = Math.abs(hash) % underlying.length; // converts the hash to an index for its posistion using modulo
+
+        if (underlying[index] == null){ // if there is nothing in the index,
+            underlying[index] = newNode;// place the node in the index's posistion.
+        } else {                        // if there is something,
+            newNode.setNext(underlying[index]); // links the node to the linkedlist (I read about it after I messed up the question in class),
+            underlying[index] = newNode; // set the index to the node.
+        }
     } // method add
 
 } // class HashTable
