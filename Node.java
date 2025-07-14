@@ -13,6 +13,7 @@ public class Node<E extends Comparable<E>> {
     private E content;
     /** Pointer to next node */
     private Node<E> next;
+   
 
     /** Basic constructor */
     public Node(E e) {
@@ -46,7 +47,30 @@ public class Node<E extends Comparable<E>> {
      * Object.toString()
      */
     public String toString() {
-        return content.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("#HASHTABLE: "); // hashtag hashtable as the header
+
+        for (int i = 0; i < underlying.length; i++) { // iterate through the index of the underlying array
+            sb.append("(").append(i).append(")"); // display the index like (index)
+
+            Node<E> current = underlying[i]; // 
+            if (current == null){
+                sb.append("Nothing there");
+
+            } else{
+                while(current != null){
+                    sb.append(current.getContent());
+                    current = current.getNext();
+                    
+                    if (current != null){
+                        sb.append("! ===>");
+                    }
+                }
+            }
+
+
+        }
+        return sb.toString();
     }
 
 } // Generic class Node
